@@ -1,0 +1,122 @@
+Jmeter - HW_1
+Сделать сценарий с перечисленными эндпоинтами
+http://162.55.220.72:5005
+
+1) http://162.55.220.72:5005/get_method
+req.
+GET
+name: str
+age: int
+
+
+2) http://162.55.220.72:5005/user_info_2
+req.
+POST
+name: str
+age: int
+salary: int
+
+
+3) http://162.55.220.72:5005/user_info_3
+req.
+POST
+name: str
+age: int
+salary: int
+
+4) http://162.55.220.72:5005/object_info_1
+req.
+GET
+name: str
+age: int
+weight: int
+
+5) http://162.55.220.72:5005/object_info_2
+req.
+GET
+name: str
+age: int
+salary: int
+
+6) http://162.55.220.72:5005/object_info_3
+req.
+GET
+name: str
+age: int
+salary: int
+
+7) http://162.55.220.72:5005/object_info_4
+req.
+GET
+name: str
+age: int
+salary: int
+
+token
+$.token
+1
+
+BeanShell Assertion:
+${__setProperty(token,${token})}
+
+Set token value to parameters in request:
+${token}
+
+I:
+String auth_token = props.get("token");
+vars.put("token", auth_token);
+
+Jmeter_2 HW
+
+1) http://162.55.220.72:5005/get_test_user
+req. (RAW JSON)
+POST
+age: int
+salary: int
+name: str
+auth_token
+
+
+resp.
+{
+    "name": "Maksim",
+    "family": {
+        "children": [
+            [
+                "Alex",
+                24
+            ],
+            [
+                "Kate",
+                12
+            ]
+        ],
+        "u_salary_1_5_year": 12000
+    },
+    "salary": 3000,
+    "age": "49"
+
+
+Действия:
+1) Достать из Response значение из поля 'u_salary_1_5_year' и передать в поле salary запроса http://162.55.220.72:5005/new_data
+===================
+
+2) http://162.55.220.72:5005/new_data
+req.
+POST
+age: int
+salary: int
+name: str
+auth_token
+
+Resp.
+{'name':name,
+  'age': int(age),
+  'salary': [salary, str(salary*2), str(salary*3)]}
+
+
+
+
+
+
+
